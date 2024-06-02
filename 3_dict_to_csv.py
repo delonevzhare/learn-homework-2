@@ -9,13 +9,20 @@
 2. Запишите содержимое списка словарей в файл в формате csv
 
 """
-
+import csv
 def main():
-    """
-    Эта функция вызывается автоматически при запуске скрипта в консоли
-    В ней надо заменить pass на ваш код
-    """
-    pass
+    employers = [
+        {'name': 'Max', 'age': 23, 'job': 'Engineer'},
+        {'name': 'Andrei', 'age': 25, 'job': 'Designer'},
+        {'name': 'Svetlana', 'age': 43, 'job': 'Manager'},
+        {'name': 'Vasilisa', 'age': 31, 'job': 'Analyst'}
 
+    ]
+    with open('peolpe.csv', 'w', newline='') as f:
+        fieldnames = ['name', 'age', 'job'] #Указываем ключи, которые будут заголвками столбцов
+        writer = csv.DictWriter(f, fieldnames=fieldnames) #Создаем объект writer
+        writer.writeheader() #Записываем заголовок
+        for epmloyee in employers:
+            writer.writerow(epmloyee)
 if __name__ == "__main__":
     main()
